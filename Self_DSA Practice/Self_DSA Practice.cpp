@@ -1,20 +1,57 @@
-// Self_DSA Practice.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
-#include <iostream>
+#include<iostream>
+#include<vector>
+#include<queue>
+#include<stack>
+#include <string>
+
+using namespace std;
+
+/// <summary>
+/// Please implement a function in C++ that reverses a string
+/// . Your function should take a string as input and return the reversed string.
+/// </summary>
+
+/*
+void reverseString(string& str) {
+    const int length = str.length();
+    for (int i = 0; i < length/2; i++) {
+        swap(str[i], str[length - i - 1]);
+    }
+}
+*/
+
+/*
+* print pattern as 
+* 1234
+* 1234
+* 1234
+* 1234
+*/
+void printingPattern(int n) {
+    int i = 0;
+    while (i <= n) {
+        int j = 1;
+        while (j <= n) {
+            cout << j;
+            j++;
+        }
+        cout << endl;
+        i++;
+    }
+}
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    /*
+    * string str = "amittomar";
+    reverseString(str);
+    cout << str;
+    */
+    
+    int n = 6;
+    printingPattern(n);
+    return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
