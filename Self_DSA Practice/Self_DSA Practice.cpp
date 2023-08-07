@@ -58,13 +58,11 @@ void printingPattern(int n) {
     }
 }
 */
-
 /*
 * printing
 * 123
 * 456
 * 789
-*/
 void printingPattern3(int n) {
     int i = 1;
     int count = 1;
@@ -79,7 +77,28 @@ void printingPattern3(int n) {
         i++;
     }
 }
+*/
+/*
+* printing
+    *
+    * *
+    * * *
+    * * * *
+    * void printingStar(int n) {
+    int row = 1;
+    while (row <= n) {
 
+        int col = 1;
+        while (col<=row)
+        {
+            cout << "*" << " ";
+            col++;
+        }
+        cout << endl;
+        row++;
+    }
+}
+*/
 
 int main()
 {
@@ -98,10 +117,16 @@ int main()
     cin >> n;
     printingPattern2(n);
     */
-    int n;
+    /*
+    * int n;
     cin >> n;
     printingPattern3(n);
-
+    */
+    /*
+    printingStar(n);
+    */
+    int n;
+    cin >> n;
     return 0;
 }
 
