@@ -20,7 +20,6 @@ void reverseString(string& str) {
     }
 }
 */
-
 /*
 * print pattern as 
 * 1234
@@ -41,13 +40,12 @@ void printingPattern(int n) {
 }
 *
 */
-
 /*
-* printing 4321
+* printing 
+  4321
 * 4321
 * 4321
-*/
-void printingPattern2(int n) {
+* void printingPattern2(int n) {
     int i = 1;
     while (i <=n) {
         int j = n;
@@ -59,6 +57,30 @@ void printingPattern2(int n) {
         i++;
     }
 }
+*/
+
+/*
+* printing
+* 123
+* 456
+* 789
+*/
+void printingPattern3(int n) {
+    int i = 1;
+    int count = 1;
+    while (i <= n) {
+        int j = 1;
+        while (j <=n ) {
+            cout << count<<" ";
+            count++;
+            j++;
+        }
+        cout << endl;
+        i++;
+    }
+}
+
+
 int main()
 {
     /*
@@ -66,16 +88,20 @@ int main()
     reverseString(str);
     cout << str;
     */
-    
     /*
     * int n = 6;
     printingPattern(n);
     */
-    
+    /*
     int n;
     cout << "Enter the value to print the pattern:- ";
     cin >> n;
     printingPattern2(n);
+    */
+    int n;
+    cin >> n;
+    printingPattern3(n);
+
     return 0;
 }
 
