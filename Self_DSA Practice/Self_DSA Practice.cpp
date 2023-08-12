@@ -103,6 +103,8 @@ void printingPattern3(int n) {
 
 //TRIE DATASTRUCTURE EXAMPLE ...
 
+/*
+
 class TrieNode {
 public:
     unordered_map<char, TrieNode*> children;
@@ -154,6 +156,63 @@ public:
 };
 
 
+*/
+
+
+//HEAP DATA STRUCTURE EXAMPLE...
+
+class MinHeap {
+private:
+    vector<int> heap;
+
+    int parent(int i) { return (i - 1) / 2; }
+    int leftChild(int i) { return 2 * i + 1; }
+    int rightChild(int i) { return 2 * i + 2; }
+
+    void heapifyUp(int i) {
+        while (i > 0 && heap[parent(i)] > heap[i]) {
+            swap(heap[parent(i)], heap[i]);
+            i = parent(i);
+        }
+    }
+
+    void heapifyDown(int i) {
+        int minIndex = i;
+        int l = leftChild(i);
+        int r = rightChild(i);
+
+        if (l < heap.size() && heap[l] < heap[minIndex]) {
+            minIndex = l;
+        }
+        if (r < heap.size() && heap[r] < heap[minIndex]) {
+            minIndex = r;
+        }
+
+        if (i != minIndex) {
+            swap(heap[i], heap[minIndex]);
+            heapifyDown(minIndex);
+        }
+    }
+
+public:
+    void insert(int value) {
+        heap.push_back(value);
+        heapifyUp(heap.size() - 1);
+    }
+
+    int getMin() {
+        return heap[0];
+    }
+
+    void extractMin() {
+        if (heap.empty()) {
+            return;
+        }
+        swap(heap[0], heap[heap.size() - 1]);
+        heap.pop_back();
+        heapifyDown(0);
+    }
+};
 
 
 int main()
@@ -170,7 +229,7 @@ int main()
     printingPattern3(n);
     printingStar(n);
     */
-   
+    /*
     Trie trie;
 
     trie.insert("apple");
@@ -184,6 +243,21 @@ int main()
     cout << "Starts with 'ban': " << (trie.startsWith("ban") ? "Yes" : "No") << endl;
     cout << "Starts with 'ana': " << (trie.startsWith("ana") ? "Yes" : "No") << endl;
 
+    */
+
+    MinHeap minHeap;
+
+    minHeap.insert(5);
+    minHeap.insert(10);
+    minHeap.insert(3);
+    minHeap.insert(8);
+    minHeap.insert(2);
+
+    cout << "Minimum element: " << minHeap.getMin() << endl;
+
+    minHeap.extractMin();
+
+    cout << "Minimum element after extraction: " << minHeap.getMin() << endl;
     return 0;
 }
 
