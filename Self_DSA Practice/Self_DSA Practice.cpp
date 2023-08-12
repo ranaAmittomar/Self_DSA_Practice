@@ -4,6 +4,7 @@
 #include<queue>
 #include<stack>
 #include <string>
+#include <unordered_map>
 
 using namespace std;
 
@@ -98,35 +99,91 @@ void printingPattern3(int n) {
         row++;
     }
 }
-*/
+*/ 
+
+//TRIE DATASTRUCTURE EXAMPLE ...
+
+class TrieNode {
+public:
+    unordered_map<char, TrieNode*> children;
+    bool isEndOfWord;
+
+    TrieNode() {
+        isEndOfWord = false;
+    }
+};
+class Trie {
+private:
+    TrieNode* root;
+
+public:
+    Trie() {
+        root = new TrieNode();
+    }
+
+    void insert(string word) {
+        TrieNode* node = root;
+        for (char c : word) {
+            if (node->children.find(c) == node->children.end()) {
+                node->children[c] = new TrieNode();
+            }
+            node = node->children[c];
+        }
+        node->isEndOfWord = true;
+    }
+    bool search(string word) {
+        TrieNode* node = root;
+        for (char c : word) {
+            if (node->children.find(c) == node->children.end()) {
+                return false;
+            }
+            node = node->children[c];
+        }
+        return node->isEndOfWord;
+    }
+    bool startsWith(string prefix) {
+        TrieNode* node = root;
+        for (char c : prefix) {
+            if (node->children.find(c) == node->children.end()) {
+                return false;
+            }
+            node = node->children[c];
+        }
+        return true;
+    }
+};
+
+
+
 
 int main()
 {
-    /*
+   /*
     * string str = "amittomar";
     reverseString(str);
     cout << str;
     */
-    /*
-    * int n = 6;
+   //all pattern printing function are below!
+   /*
     printingPattern(n);
-    */
-    /*
-    int n;
-    cout << "Enter the value to print the pattern:- ";
-    cin >> n;
     printingPattern2(n);
-    */
-    /*
-    * int n;
-    cin >> n;
     printingPattern3(n);
-    */
-    /*
     printingStar(n);
     */
-    int n;
-    cin >> n;
+   
+    Trie trie;
+
+    trie.insert("apple");
+    trie.insert("app");
+    trie.insert("banana");
+
+    cout << "Search 'apple': " << (trie.search("apple") ? "Found" : "Not found") << endl;
+    cout << "Search 'app': " << (trie.search("app") ? "Found" : "Not found") << endl;
+    cout << "Search 'ban': " << (trie.search("ban") ? "Found" : "Not found") << endl;
+    cout << "Starts with 'app': " << (trie.startsWith("app") ? "Yes" : "No") << endl;
+    cout << "Starts with 'ban': " << (trie.startsWith("ban") ? "Yes" : "No") << endl;
+    cout << "Starts with 'ana': " << (trie.startsWith("ana") ? "Yes" : "No") << endl;
+
     return 0;
 }
 
