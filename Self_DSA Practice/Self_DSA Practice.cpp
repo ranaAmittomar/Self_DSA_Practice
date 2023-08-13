@@ -158,9 +158,8 @@ public:
 
 */
 
-
 //HEAP DATA STRUCTURE EXAMPLE...
-
+/*
 class MinHeap {
 private:
     vector<int> heap;
@@ -214,6 +213,63 @@ public:
     }
 };
 
+*/
+
+//REVERSE A LINKED LIST..
+
+class Node {
+public:
+    int data;
+    Node* next;
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
+};
+
+class LinkedList {
+private:
+    Node* head;
+public:
+    LinkedList() {
+        head = NULL;
+    }
+    void insertData(int val) {
+        Node* newNode = new Node(val);//initailizing new Node.
+        if (head == NULL) {
+            head = newNode;
+        }
+        else {
+            Node* current = head;
+            while (current->next != NULL) {
+                current = current->next;
+            }
+            current->next = newNode;
+        }
+    }
+    void reverseList() {
+        Node* prev = NULL;
+        Node* current = head;
+        Node* nextNode;
+        while (current != NULL) {
+            nextNode = current->next;
+            current->next = prev;
+            prev = current;
+            current = nextNode;
+        }
+        head = prev;
+    }
+    void display() {
+        Node* current = head;
+        while (current != NULL) {
+            cout << current->data << " ";
+            current = current->next;
+        }
+        cout << endl;
+    }
+
+};
+
 
 int main()
 {
@@ -245,6 +301,7 @@ int main()
 
     */
 
+    /*
     MinHeap minHeap;
 
     minHeap.insert(5);
@@ -258,6 +315,18 @@ int main()
     minHeap.extractMin();
 
     cout << "Minimum element after extraction: " << minHeap.getMin() << endl;
+    */
+
+    LinkedList myList;
+    myList.insertData(2);
+    myList.insertData(4);
+    myList.insertData(6);
+    cout << "The original List :- ";
+    myList.display();
+    myList.reverseList();
+    cout << "The reversed List :- ";
+    myList.display();
+
     return 0;
 }
 
