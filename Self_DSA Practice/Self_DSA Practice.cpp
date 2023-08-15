@@ -228,12 +228,13 @@ public:
 };
 
 class LinkedList {
-private:
-    Node* head;
+public: 
+    Node* head; // we need to make it public if we want to access it outside of class inside main func.
 public:
     LinkedList() {
         head = NULL;
     }
+    
     void insertData(int val) {
         Node* newNode = new Node(val);//initailizing new Node.
         if (head == NULL) {
@@ -284,6 +285,21 @@ public:
         return slow;
     }
 
+    bool hasCycle() {
+        if (head == NULL) {
+            return NULL;
+        }
+        Node* slow = head;
+        Node* fast = head;
+        while (fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
 };
 
 
@@ -339,7 +355,6 @@ int main()
     myList.insertData(6);
     myList.insertData(10);
     myList.insertData(15);
-    myList.insertData(12);
     cout << "The original List :- ";
     myList.display();
     myList.reverseList();
@@ -353,7 +368,17 @@ int main()
     else {
         cout << "Linked List is empty:- " << endl;
     }
-
+    Node* lastNode = myList.head;
+    while (lastNode->next != nullptr) {
+        lastNode = lastNode->next;
+    }
+    lastNode->next = myList.head->next;
+    if (myList.hasCycle()) {
+        cout << "Has cycle" << endl;
+    }
+    else {
+        cout << "Don't have cycle" << endl;
+    }
     return 0;
 }
 
