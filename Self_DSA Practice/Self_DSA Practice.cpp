@@ -268,6 +268,22 @@ public:
         cout << endl;
     }
 
+    Node* findMiddle() { //fIND middle of Linked List..
+        if (head == NULL) {
+            return NULL;
+        }
+
+        Node* slow = head;
+        Node* fast = head;
+
+        while (fast != NULL && fast->next != NULL && fast->next->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        return slow;
+    }
+
 };
 
 
@@ -321,11 +337,22 @@ int main()
     myList.insertData(2);
     myList.insertData(4);
     myList.insertData(6);
+    myList.insertData(10);
+    myList.insertData(15);
+    myList.insertData(12);
     cout << "The original List :- ";
     myList.display();
     myList.reverseList();
     cout << "The reversed List :- ";
     myList.display();
+
+    Node* middle = myList.findMiddle();
+    if (middle != NULL) {
+        cout << "Middle of the Linked List:- " << middle->data << endl;
+    }
+    else {
+        cout << "Linked List is empty:- " << endl;
+    }
 
     return 0;
 }
