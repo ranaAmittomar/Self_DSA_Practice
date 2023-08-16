@@ -234,6 +234,9 @@ public:
     LinkedList() {
         head = NULL;
     }
+    Node* getHead() {
+        return head;
+    }
     
     void insertData(int val) {
         Node* newNode = new Node(val);//initailizing new Node.
@@ -302,6 +305,30 @@ public:
     }
 };
 
+LinkedList mergeSortedLL(LinkedList l1, LinkedList l2) { //merging the sorte list
+    LinkedList mergeList;
+    Node* curr1 = l1.getHead();
+    Node* curr2 = l2.getHead();
+    while (curr1 != NULL && curr2 != nullptr) {
+        if (curr1->data < curr2->data) {
+            mergeList.insertData(curr1->data);
+            curr1 = curr1->next;
+        }
+        else {
+            mergeList.insertData(curr2->data);
+            curr2 = curr2->next;
+        }
+    }
+    while (curr1 != nullptr) {
+        mergeList.insertData(curr1->data);
+        curr1 = curr1->next;
+    }
+    while (curr2 != nullptr) {
+        mergeList.insertData(curr2->data);
+        curr2 = curr2->next;
+    }
+    return mergeList;
+}
 
 int main()
 {
@@ -349,12 +376,15 @@ int main()
     cout << "Minimum element after extraction: " << minHeap.getMin() << endl;
     */
 
+   /*
     LinkedList myList;
     myList.insertData(2);
     myList.insertData(4);
     myList.insertData(6);
     myList.insertData(10);
     myList.insertData(15);
+    myList.insertData(20);
+    myList.insertData(NULL);
     cout << "The original List :- ";
     myList.display();
     myList.reverseList();
@@ -379,6 +409,21 @@ int main()
     else {
         cout << "Don't have cycle" << endl;
     }
+   */
+    LinkedList l1, l2;
+    l1.insertData(2);
+    l1.insertData(5);
+    l1.insertData(7);
+    cout << "The First List is:- " ;
+    l1.display();
+    l2.insertData(3);
+    l2.insertData(6);
+    l2.insertData(9);
+    cout << "The Second List is:- ";
+    l2.display();
+    LinkedList mergedList = mergeSortedLL(l1, l2);
+    cout << "The merged list is :- ";
+    mergedList.display();
     return 0;
 }
 
