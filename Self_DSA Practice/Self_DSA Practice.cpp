@@ -215,6 +215,23 @@ public:
 
 */
 
+
+//Palindrome Check
+bool isPalindrome(const string& word) {
+    int start = 0;
+    int end = word.length() - 1;
+    while (start < end) {
+        if (tolower(word[start]) != tolower(word[end])) { //for case sensitive
+
+            return false;
+        }
+        start++;
+        end--;
+    }
+    return true;
+}
+
+
 //REVERSE A LINKED LIST..
 
 class Node {
@@ -410,6 +427,17 @@ int main()
         cout << "Don't have cycle" << endl;
     }
    */
+
+    string input;
+    cout << "Enter a word: ";
+    cin >> input;
+
+    if (isPalindrome(input)) {
+        cout << "It's a palindrome!" << endl;
+    }
+    else {
+        cout << "It's not a palindrome." << endl;
+    }
     LinkedList l1, l2;
     l1.insertData(2);
     l1.insertData(5);
@@ -424,6 +452,8 @@ int main()
     LinkedList mergedList = mergeSortedLL(l1, l2);
     cout << "The merged list is :- ";
     mergedList.display();
+
+
     return 0;
 }
 
