@@ -216,6 +216,9 @@ public:
 */
 
 
+
+
+
 //Palindrome Check
 bool isPalindrome(const string& word) {
     int start = 0;
@@ -229,6 +232,30 @@ bool isPalindrome(const string& word) {
         end--;
     }
     return true;
+}
+
+//Doing Binary Search Simple
+
+void binarySearch(int target, vector<int> arr) {
+    int start = 0;
+    int sizeOfAr = arr.size() - 1;
+    int flag = 1;
+    while (start <= sizeOfAr) {
+        int midIndx = (start + sizeOfAr) / 2;
+        if (arr[midIndx] == target) {
+            flag = 0;
+            cout << "Element found"<<endl;
+            break;
+        }
+        else if (arr[midIndx] < target) {
+            start = midIndx + 1;
+        }
+        else {
+            sizeOfAr = midIndx - 1;
+        }
+    }
+    if (flag)
+        cout << "Element not here"<<endl;
 }
 
 
@@ -427,6 +454,13 @@ int main()
         cout << "Don't have cycle" << endl;
     }
    */
+
+    vector<int> arr = { 10, 20, 30, 40, 50 };
+    int target ;
+    cout << "Enter target:  ";
+    cin >> target;
+    binarySearch(target, arr);
+
 
     string input;
     cout << "Enter a word: ";
