@@ -215,7 +215,31 @@ public:
 
 */
 
+//Find unique element using XOR maths functions. for only one number..
+int uniqueEleFunc(vector<int> arr) {
+    int uniqueEle = 0;
+    for (int i = 0; i < arr.size(); i++) {
+        uniqueEle ^= arr[i];
+    }
+    return uniqueEle;
+}
 
+//find multiple unique number.. 
+vector<int> findUniqueElement(vector<int>& arr) {
+    unordered_map<int, int> frequency;
+    //counting frequency of each element in aar.
+    for (int i = 0; i < arr.size(); i++) {
+        frequency[arr[i]]++;
+    }
+    vector<int> uniqueEle;
+    //checking which element has frequency of 1.
+    for (int i = 0; i < arr.size(); i++) {
+        if (frequency[arr[i]] == 1) {
+            uniqueEle.push_back(arr[i]);
+        }
+    }
+    return uniqueEle;
+}
 
 
 
@@ -258,6 +282,33 @@ void binarySearch(int target, vector<int> arr) {
         cout << "Element not here"<<endl;
 }
 
+
+//IMPLEMENTING THE QUEUE USING TWO STACK..
+class Queue {
+public:
+    vector<int> stack1;// for enque all the elements.
+    vector<int> stack2; //using it to get the top elements;
+    void enQueue(int elements) {
+        stack1.push_back(elements);
+    }
+    int deQueue() {
+        if (stack2.empty()) {//transfering items to stack to get the front item.
+            while (!stack1.empty()) {
+                stack2.push_back(stack1.back());
+                stack1.pop_back();
+            }
+        }
+        if (!stack2.empty()) {
+            int front = stack2.back();
+            stack2.pop_back();
+            return front;
+        }
+        else {
+            cout << "Queue is empty";
+            return -1;
+        }
+    }
+};
 
 //REVERSE A LINKED LIST..
 
@@ -455,6 +506,7 @@ int main()
     }
    */
 
+  /*
     vector<int> arr = { 10, 20, 30, 40, 50 };
     int target ;
     cout << "Enter target:  ";
@@ -486,6 +538,32 @@ int main()
     LinkedList mergedList = mergeSortedLL(l1, l2);
     cout << "The merged list is :- ";
     mergedList.display();
+
+  */
+
+    Queue myQueue;
+
+    myQueue.enQueue(1);
+    myQueue.enQueue(2);
+    myQueue.enQueue(3);
+    std::cout << myQueue.deQueue() << std::endl; // Dequeue 1
+    std::cout << myQueue.deQueue() << std::endl; // Dequeue 2
+    myQueue.enQueue(4);
+    std::cout << myQueue.deQueue() << std::endl; // Dequeue 3
+    std::cout << myQueue.deQueue() << std::endl; // Dequeue 4
+    
+   //----------------------------------------------------------------/
+
+    vector<int> arr = {1, 2, 3,4, 3, 2, 1};
+    cout << "The unique number from the array is: " << uniqueEleFunc(arr);
+    cout << endl;
+    vector<int> arr1 = { 1, 2, 3,4, 3, 2, 1 };
+    vector<int> uniqueElem = findUniqueElement(arr1);
+    cout << "Unique Multiple :  ";
+    for (int i = 0; i < uniqueElem.size(); i++) {
+        cout << uniqueElem[i] << " ";
+    }
+    cout << endl;
 
 
     return 0;
